@@ -1,0 +1,7 @@
+User-agent: *
+Sitemap: http://blog.lifeaweso.me/sitemap.xml
+Disallow: /ghost/
+
+
+User-agent: *
+Disallow: /view.gif
