@@ -1,0 +1,44 @@
+p
+  | The delete user and user index api routes are restricted to users with the 'admin' role
+
+table.bordered.responsive-table
+  thead
+    tr
+      th(data-field="id") Name
+      th(data-field="name") Email
+      th(data-field="role") Role
+  tbody
+    tr(ng-repeat="user in users")
+
+      td(ng-show="edit_mode")
+        .input-field
+          input.validate#Name(type="text" ng-model="user.name")
+          label.active(for="Name") Name
+      td(ng-show="edit_mode")
+        .input-field
+          input#Email(type="text" ng-model="user.email" disabled)
+      td(ng-show="edit_mode")
+        label Materialize Select
+        select.MaterialSelect(ng-model="user.role")
+          option(value='', disabled='', selected='') Choose a new role
+          option(value='admin') Admin
+          option(value='user') User
+          
+
+
+      
+
+      td(ng-hide="edit_mode") {{ user.name }}
+      td(ng-hide="edit_mode") {{ user.email }}
+      td(ng-hide="edit_mode") {{ user.role }}
+      td
+        a.m-r-xl.green-text(ng-show="edit_mode" ng-click='save(user);edit_mode = !edit_mode')
+          span.glyphicon.glyphicon-ok-circle.pull-right.m-r-xs
+          span Save
+        a.m-r-xl(ng-click='edit_mode = !edit_mode')
+          span.glyphicon.glyphicon-edit.pull-right.m-r-xs
+          span Edit
+        a.trash(ng-show="user.email != 'admin@admin.com'" ng-click='delete(user)') 
+          span.glyphicon.glyphicon-remove.pull-right.m-r-xs 
+          span Delete
+      td(ng-click="")

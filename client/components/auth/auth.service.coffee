@@ -18,14 +18,12 @@ angular.module 'truingApp'
       password: user.password
 
     .success (data) ->
-      console.log "it worked", data
       $cookieStore.put 'token', data.token
       currentUser = User.get()
       deferred.resolve data
       callback?()
 
     .error (err) =>
-      console.error "it failed", data
       @logout()
       deferred.reject err
       callback? err
