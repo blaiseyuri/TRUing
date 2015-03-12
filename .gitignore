@@ -1,6 +1,7 @@
 node_modules
 public
 .tmp
+db
 .idea
 client/bower_components
 dist
