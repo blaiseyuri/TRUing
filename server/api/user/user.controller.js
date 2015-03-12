@@ -94,17 +94,19 @@ exports.me = function(req, res, next) {
 };
 
 /**
- * Alters a user
+ * Saves changes to a users information
+ * Limited to a User's name and role
  * restriction: 'admin'
  */
 exports.save = function(req, res, next) {
-  var userId = req.user._id;
-  delete req.user._id;
-  console.log("made it this far", userId)
+  var userId = req.param('id')
+  var user = req.body
 
-  User.findByIdAndUpdate(userId, req.user, function(err, user){
-    if (err) return res.send(500, err)
-    res.send(200)
+  User.findByIdAndUpdate(userId, 
+    {$set: {name: user.name, role:user.role}},
+    function(err, user){
+      if (err) return res.send(500, err);
+      res.send(200);
   });
 };
 

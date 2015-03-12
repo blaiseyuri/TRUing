@@ -6,7 +6,7 @@ angular.module 'truingApp'
   .success (users) ->
     $scope.users = users
 
-  $scope.edit_mode = true
+  $scope.edit_mode = false
   $scope.save = (user) ->
     User.save(user)
 
